@@ -77,7 +77,7 @@ AI.prototype.Estimate = function(s) {
       diff += Math.abs(s[i] - s[i + 4]);
     }
   }
-  return (sum - diff / 2) / 10.0;
+  return (sum - diff / 2);
 };
 
 AI.prototype.Search = function(s, depth) {
@@ -118,7 +118,7 @@ AI.prototype.Search = function(s, depth) {
         if (empty_slots != 0) {
           temp /= empty_slots;
         } else {
-          temp = -100000;
+          temp = -10000000;
         }
         this.cache_after_movement[t] = temp;
       } else {
@@ -146,18 +146,15 @@ AI.prototype.SetTile = function(x, y, v) {
 AI.prototype.StartSearch = function() {
   this.cache_before_movement = {};
   this.cache_after_movement = {};
-  if (this.node < 1000) {
+  if (this.node < 200) {
+    this.max_depth = 6;
+  } else if (this.node < 1000) {
     this.max_depth = 5;
   } else if (this.node < 4000) {
     this.max_depth = 4;
   } else {
     this.max_depth = 3;
   }
-  /*if (Math.max.apply(null, this.grid) >= 1024) {
-    this.max_depth = 4;
-  } else {
-    this.max_depth = 3;
-  }*/
   this.node = 0;
   this.Search(this.grid, 0);
   console.log(this.node);
