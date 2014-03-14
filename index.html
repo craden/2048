@@ -91,7 +91,7 @@
     var ai = new AI();
     var continuous = false;
     var time_out = null;
-    var interval = 300;
+    var interval = 200;
     function ai_run() {
       time_out = null;
       if (!global_game || global_game.over || global_game.won) return;
@@ -116,10 +116,10 @@
       }
     }
   </script>
-  <div style="position:absolute;top:30px;left:30px">
-    <button onclick="continuous=true;interval=300;ai_run();">Complete2048</button>
-    <button onclick="continuous=true;interval=0;ai_run();">GetCrazy</button>
-    <button onclick="continuous=false;ai_run();">OneStep</button>
+  <div style="position:absolute;top:10px;left:10px">
+    <button onclick="continuous=true;interval=300;ai_run();"><h4><font color="red">Complete2048</font></h4></button></br>
+    <button onclick="continuous=true;interval=0;ai_run();"><h5>GetCrazy</h5></button>
+    <button onclick="continuous=false;ai_run();"><h5>OneStep</h5></button>
   </div>
 </body>
 </html>
