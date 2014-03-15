@@ -144,18 +144,14 @@ AI.prototype.SetTile = function(x, y, v) {
 };
 
 AI.prototype.StartSearch = function() {
-  this.cache_before_movement = {};
-  this.cache_after_movement = {};
-  if (this.node < 200) {
-    this.max_depth = 6;
-  } else if (this.node < 1000) {
-    this.max_depth = 5;
-  } else if (this.node < 4000) {
-    this.max_depth = 4;
-  } else {
-    this.max_depth = 3;
-  }
   this.node = 0;
-  this.Search(this.grid, 0);
-  console.log(this.node);
+  this.max_depth = 3;
+  while (true) {
+    this.cache_before_movement = {};
+    this.cache_after_movement = {};
+    this.node = 0;
+    this.Search(this.grid, 0);
+    if (this.node >= 4000 || this.max_depth >= 10) break;
+    this.max_depth += 1;
+  }
 };

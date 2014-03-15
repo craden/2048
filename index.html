@@ -91,7 +91,7 @@
     var ai = new AI();
     var continuous = false;
     var time_out = null;
-    var interval = 200;
+    var interval = 500;
     var after_win = false;
     function ai_run() {
       time_out = null;
@@ -118,7 +118,7 @@
     }
     function run(one_step, crazy) {
       continuous = one_step ? false : true;
-      interval = crazy ? 0 : 200;
+      interval = crazy ? 0 : 500;
       if (global_game && global_game.won) {
         after_win = true;
       }
