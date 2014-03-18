@@ -50,7 +50,7 @@ AI.prototype.Estimate = function(s) {
       diff += Math.abs(s[i] - s[i + 4]);
     }
   }
-  return (sum - diff / 4) * 2;
+  return (sum * 4 - diff) * 2;
 };
 
 AI.prototype.Search = function(s, depth) {
@@ -110,7 +110,7 @@ AI.prototype.StartSearch = function() {
   while (true) {
     this.node = 0;
     this.Search(this.grid, 0);
-    if (this.node >= 4000 || this.max_depth >= 10) break;
+    if (this.node >= 10000 || this.max_depth >= 8) break;
     this.max_depth += 1;
   }
 };
