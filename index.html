@@ -22,7 +22,17 @@
         <div class="best-container">0</div>
       </div>
     </div>
-    <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
+    <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></br>
+      <div style="background:#88CCFF;padding:4px;">
+        <div style="margin:0px auto;text-align:center;">
+          <font color="white">I'm a robot!&nbsp;</font>
+          <button onclick="run(true, true, false);"><font color="red">Complete2048</font></button>
+          <button onclick="run(true, true, true);">GetCrazy</button>
+          <button onclick="run(false, true, false);">OneStep</button>
+          <button onclick="run(false, false, false);" disabled=true id="stop">Stop</button>
+        </div>
+      </div>
+    </p>
 
     <div class="game-container">
       <div class="game-message">
@@ -116,19 +126,17 @@
         }
       }
     }
-    function run(one_step, crazy) {
-      continuous = one_step ? false : true;
-      interval = crazy ? 0 : 500;
-      if (global_game && global_game.won) {
-        after_win = true;
+    function run(is_continuous, need_run, is_crazy) {
+      continuous = is_continuous;
+      document.getElementById("stop").disabled = !continuous;
+      interval = is_crazy ? 0 : 500;
+      if (need_run) {
+        if (global_game && global_game.won) {
+          after_win = true;
+        }
+        ai_run();
       }
-      ai_run();
     }
   </script>
-  <div style="position:absolute;top:10px;left:10px">
-    <button onclick="run(false, false);"><h4><font color="red">Complete2048</font></h4></button></br>
-    <button onclick="run(false, true);"><h5>GetCrazy</h5></button>
-    <button onclick="run(true, false);"><h5>OneStep</h5></button>
-  </div>
 </body>
 </html>
